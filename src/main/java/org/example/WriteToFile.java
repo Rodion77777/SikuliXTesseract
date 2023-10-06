@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 public class WriteToFile {
     public static void inTXT (String text, String pathToFile) {
         try {
-            FileUtils.writeStringToFile(new File(pathToFile), text, StandardCharsets.UTF_8);
+            FileUtils.writeStringToFile(new File(pathToFile + "result" + Info.getTimeStamp() + ".txt"), text, StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
