@@ -4,15 +4,15 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 import java.io.File;
-import java.util.Arrays;
 
 public class Recognizer {
-    public static String getText (String pathToImage) {
+    public static String getText (String pathToImage, String dpi) {
 
         Tesseract tesseract = new Tesseract();
+
         tesseract.setDatapath(Info.pathToTesseractOCR);
-        tesseract.setLanguage("rus");
-        tesseract.setTessVariable("tessedit_char_whitelist", "0123456789");
+        if (dpi != null) tesseract.setTessVariable("user_defined_dpi", dpi);
+        tesseract.setLanguage("rus+eng");
 
         String result = null;
 
@@ -22,6 +22,10 @@ public class Recognizer {
             System.err.println(te.getMessage());
         }
 
+        System.out.println(result);
         return result;
     }
 }
+
+//tesseract.setTessVariable("tessedit_char_whitelist", "0123456789");
+//tesseract.setTessVariable("user_patterns", "\\:\\s(\\d{5})");
